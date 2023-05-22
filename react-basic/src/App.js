@@ -1,7 +1,7 @@
 import React from "react"
 import './app.css'
 
-/* Initial Data and Settings*/
+/* Initial Data and Settings */
 const name = "233"
 const songs = [
     {id: 1, name: 'song1'},
@@ -34,14 +34,14 @@ function Hello(){ // Must be uppercase
   return <div>hello</div>
 }
 
-/*Class Component*/
+/* Class Component */
 class HelloComponent extends React.Component{
   render(){
     return <div>this is a class component</div>
   }
 }
 
-/* Function Component with handler*/
+/* Function Component with handler */
 function HelloActive(){
     const clickHandler = ()=>{
         /* The message will be shown in console of web page*/
@@ -50,14 +50,24 @@ function HelloActive(){
     return <div onClick={clickHandler}>Say Hello!</div>
 }
 
-/*Class Component with handler*/
+/* Class Component with handler */
 class HelloComponentActive extends React.Component{
     clickHandler=()=>{
         console.log('The event in HelloComponentActive class is activated.')
     }
     render(){
+        // Use 'this' to clarify the object that handler refers to
         return <div onClick={this.clickHandler}>This is HelloComponentActive, click to activate it!</div>
     }
+}
+
+/* To get event object 'e' */
+function HelloE(){
+    const clickHandler = (e)=>{
+        console.log('Handler in HelloE is activated.')
+        console.log('E is:', e)
+    }
+    return <div><a onClick={clickHandler} herf="https://baidu.com">baidu</a></div>
 }
 
 function App() {
@@ -88,6 +98,10 @@ function App() {
 
         {/* This is a class component with click handler */}
         <HelloComponentActive/>
+
+        {/* This is the hello function with event object E */}
+        <HelloE></HelloE>
+
     </div>
   );
 }
